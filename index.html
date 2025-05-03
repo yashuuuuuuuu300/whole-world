@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Love for You</title>
+  <link rel="stylesheet" href="style.css" />
+<style type= "text/css">
+    #startMusic {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: pink;
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-size: 20px;
+      display: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+  body::before {
+    content: "❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️";
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 40px;
+    animation: hearts 10s linear infinite;
+    opacity: 0.9;
+  }
+
+  @keyframes hearts {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+  }
+</style>
+
+</head>
+<body>
+<audio id="bgSong" loop>
+  <source src="Hasi bn gye.mp3
+  " type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<div id="startMusic">Tap to Start Music 🎵</div>
+
+<script>
+  const audio = document.getElementById("bgSong");
+  const button = document.getElementById("startMusic");
+
+  function playMusicFromTime(time) {
+    audio.currentTime = time;
+    audio.play();
+  }
+
+  // Try autoplay
+  window.addEventListener("DOMContentLoaded", () => {
+    audio.addEventListener("loadedmetadata", () => {
+      audio.currentTime = 28; 
+      let playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          button.style.display = 'block';
+          button.addEventListener('click', () => {
+            playMusicFromTime(40);
+            button.style.display = 'none';
+          }, { once: true });
+        });
+      }
+    });
+  });
+</script>
+
+  <div class="container">
+    <h1>Hey Jaan! ❤️</h1>
+    <p>Yeh website sirf tumhare liye hai… meri duniya, meri smile, meri sab kuch tum ho.</p>
+    <h1 class="subtitle">To My Dearest Love 💖</h1>
+    <p class="subtitle">You make my world brighter every single day.</p>
+    <img src="hipo.jpg" alt="A sweet photo" class="photo">
+    <br>
+    <p class="subtitle">I love you more than words can say. Forever yours.💘</p>
+  </div>
+  <script src="script.js"></script>
+    <nav>
+      <a href="memory.html">📸 Yaadein</a>
+      <a href="promises.html">🤝 Promises</a>
+      <a href="reasons.html">💕 100 Reasons</a>
+      <a href="album.html">💌 Album</a>
+      <a href="love notes.html">💌 Love Letter</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Beautiful Moments 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right,rgb(94, 93, 93), black, rgb(94, 93, 93));
+      color: #333;
+    }
+    #startMusic {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: pink;
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-size: 20px;
+      display: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      padding: 30px;
+      color: #c2185b;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+    <audio id="bgSong" loop>
+        <source src="Chaahat.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <div id="startMusic">Tap to Start Music 🎵</div>
+      
+      <script>
+        const audio = document.getElementById("bgSong");
+        const button = document.getElementById("startMusic");
+      
+        function playMusicFromTime(time) {
+          audio.currentTime = time;
+          audio.play();
+        }
+      
+        // Try autoplay
+        window.addEventListener("DOMContentLoaded", () => {
+          audio.addEventListener("loadedmetadata", () => {
+            audio.currentTime = 00;
+            let playPromise = audio.play();
+      
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                button.style.display = 'block';
+                button.addEventListener('click', () => {
+                  playMusicFromTime(40);
+                  button.style.display = 'none';
+                }, { once: true });
+              });
+            }
+          });
+        });
+      </script>
+      
+
+  <h1>Our Beautiful Memories Together 💕</h1>
+
+  <div class="gallery">
+    <img src="pic 1.jpeg" alt="Memory 1">
+    <img src="pic 2.jpeg" alt="Memory 2">
+    <img src="pic 3.jpeg" alt="Memory 3">
+    <img src="pic 4.jpeg" alt="Memory 4">
+    <img src="pic 5.jpeg" alt="Memory 5">
+    <img src="pic 6.jpeg" alt="Memory 6">
+    <img src="pic 7.jpeg" alt="Memory 7">
+    <img src="pic 8.jpeg" alt="Memory 8">
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome, My Love ❤️</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff0f5;
+      text-align: center;
+      padding-top: 80px;
+    }
+    #countdown-box, #access-msg {
+      display: none;
+      margin-top: 30px;
+    }
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #countdown {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #d81b60;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Enter Password To Unlock Countdown</h1>
+
+  <input type="password" id="pass" placeholder="Magic Word">
+  <br><br>
+  <button onclick="unlock()">Unlock</button>
+
+  <div id="access-msg">
+    <p>You're in, baby! Countdown begins now... 😘</p>
+  </div>
+
+  <div id="countdown-box">
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    function unlock() {
+      const password = document.getElementById("pass").value;
+      if (password === "pari.2104") { 
+        document.getElementById("pass").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.querySelector("h1").textContent = "⏳ Countdown to Our Moment";
+
+        document.getElementById("access-msg").style.display = "block";
+        document.getElementById("countdown-box").style.display = "block";
+
+        startCountdown();
+      } else {
+        alert("Wrong password, try again!");
+      }
+    }
+
+    function startCountdown() {
+      const targetDate = new Date("April 19, 2025 15:52:00").getTime();  // Set your target date/time
+      const countdownEl = document.getElementById("countdown");
+
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+          clearInterval(timer);
+          countdownEl.innerHTML = "It's time! Let's go ❤️";
+          window.location.href = "index.html";  // Redirect page
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
